@@ -1,0 +1,32 @@
+<div class="container">
+    <div>   
+        <h3 style="color: #3c0d5b;">Add New Article :</h3>
+        <hr style="border: 1px solid red;">
+    </div>
+    <%= form_for :event, :method => "post", :html => {:class => "form-horizontal center"} do |f| %>
+        <div class="form-group row">
+            <%= f.label :name, "Name:", class: "col-md-3 text-danger text-right h5 control-label" %>
+            <div class="col-md-6">
+            <%= f.text_field :name, class: "form-control",:placeholder=>"Enter event Name",
+                             :required=>true %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :content, "Event Description:", class: "col-md-3 text-danger text-right h5
+                                     control-label" %>
+            <div class="col-md-6">
+            <%= f.text_area :description, class: "form-control",:placeholder=>"Describe about event",
+                             required: true %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div style="margin-left: 33%;">
+                <%= f.submit "Submit", class: "btn btn-default btn-primary" %> 
+                <%= link_to "<button class='btn btn-danger'>Back</button>".html_safe, "/events" %>
+            </div>
+        </div>
+    <% end %>
+</div>
+
+
+ 

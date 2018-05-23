@@ -1,0 +1,29 @@
+
+<div class="container">
+    <div>   
+    <h3 class="text-danger">Edit This Article :</h3>
+    <hr style="border: 1px solid red;">
+    </div>
+    <%= form_for @article, :method => "put", :html => {:class => "form-horizontal center"} do |f| %>
+        <div class="form-group row">
+            <%= f.label :name, "Name:", class: "col-md-3 text-right text-info h4 control-label" %>
+            <div class="col-md-6">
+            <%= f.text_field :name, value: @article.name, class: "form-control", :required=>true %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <%= f.label :content, "Article Content:", class: "col-md-3 text-right text-info h4 
+                                                            control-label" %>
+            <div class="col-md-6">
+            <%= f.text_area :content, value: @article.content, class: "form-control", required: true %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-4" style="margin-left: 33%;">
+                <%= f.submit "Update", class: "btn btn-default btn-primary" %> 
+                <%= link_to "<button class='btn btn-danger'>Back</button>".html_safe, "/articles" %>
+            </div>
+        </div>
+    <% end %>
+    </div>
+</div>

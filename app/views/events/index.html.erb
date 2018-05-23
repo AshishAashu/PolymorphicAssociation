@@ -1,0 +1,82 @@
+<%= link_to "Show me Articles", articles_path%>
+<div>
+    <h5> Total Events Are:
+        <label  style="color:#ba2121;">
+            <strong>
+                <%= @events.count %>
+            </strong>
+        </label>
+    </h3>
+</div>
+<% if flash[:notice] %>
+    <div class="h5" style="padding: 5px 10px; color: #d13436; border: 1px solid #d13436;border-radius: 5px;">	
+        <%= flash[:notice] %>
+    </div>
+<% end %>
+<%= link_to "<button class='btn btn-danger'>Add Event</button>".html_safe, newevent_path %>
+<hr style="border: 1px solid grey">
+<% @events.each do |event| %>
+    <h3 style="margin-bottom: 0px;"><%= event.id %>: <%= event.name %> </h3>
+    <span style="color: #3c0d5b;">Description:- <%= event.description%></span>
+    <div>
+        <%= link_to "<button class='btn btn-success'>Edit Event</button>".html_safe, edit_event_path(event) %>
+    </div>
+
+
+    <div class="container">
+        <%= form_tag "/events/makecomment", method: "post",:class=>"form-inline" do %>
+            <h5 class="text-primary"> Comment Here:</h5>            
+            <%= hidden_field_tag :event_id, event.id %>
+            <div class="form-group">
+                <div>
+                    <%= text_field_tag :name, nil,:class=>'form-control',
+                                :placeholder=>"Enter Your name" ,:required=>true %>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <%= text_area_tag :comment,nil ,:class=>'form-control',
+                            :placeholder=>"Enter Your Comment" ,:required=>true %>	  	
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <%= submit_tag "Comment", class: "btn btn-danger", title: "Click to Comment" %>
+                </div>
+            </div>
+        <% end %>
+        <!--
+            comment div
+        -->
+
+        <div class="container well">
+            <% comments = event.comments.order(created_at: :desc) %>
+            <% if comments.count == 0 %>
+                <div class="panel-body">
+                    <p>There is no comments on this Event.</p>
+                </div>
+
+            <% else %>
+                <div class="panel-heading">
+                    <h5 class="text-danger">Comments on this "Event":-</h5>
+                </div>
+                <% flag = 0 %>
+                <% comments.each do |comment| %>
+                    <% flag = flag+1 %>
+                    <div class="panel-body">
+                        <p style="color: #13367c;margin-bottom: 2px;"><%= flag %>: <%= comment.comment_body %></p>
+                        <span style="color: #cc3914;"> ---By: <%= comment.user_name %>
+                        <hr style="border: 0.5px solid red;">
+                    </div>
+                <% end%>
+            <% end %>
+        </div>
+    </div>
+    <hr style="border: 1px solid #63105d;">
+<% end %>
+
+<script>
+    $("document").ready(function(){
+    });
+</script>
