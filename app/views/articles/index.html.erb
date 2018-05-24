@@ -25,12 +25,13 @@
         <%= link_to "<button class='btn btn-success'>Edit Article</button>".html_safe,
                      edit_article_path(article) %>
     </div>
-    
-    <div class="container">
+    <div class="container" style="margin-top: 10px;">
+        <div style="border: 1px solid grey;padding: 10px;border-radius: 10px;z-index:1;
+                        box-shadow: 4px 4px 12px 0 grey;margin-bottom:10px;">
         <%= form_tag "/articles/makecomment", method: "post",:class=>"form-inline" do %>
             <label class="text-primary"> Comment Here:</label>            
             <%= hidden_field_tag :article_id, article.id %>
-            <div class="form-group">
+            <div class="form-group" style="margin: 0px 10px;"> 
                 <div>
                     <%= text_field_tag :name, nil,:class=>'form-control',
                                 :placeholder=>"Enter Your name" ,:required=>true %>
@@ -39,16 +40,17 @@
 
             <div class="form-group">
                 <div>
-                    <%= text_area_tag :comment,nil ,:class=>'form-control',
+                    <%= text_area_tag :comment,nil ,:class=>'form-control',:rows => 1,cols: 50,
                             :placeholder=>"Enter Your Comment" ,:required=>true %>	  	
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin: 0px 10px;">
                 <div>
                     <%= submit_tag "Comment", class: "btn btn-danger", title: "Click to Comment" %>
                 </div>
             </div>
         <% end %>
+        </div>
         <!--
             comment div
         -->

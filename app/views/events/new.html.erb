@@ -5,7 +5,7 @@
     </div>
     <%= form_for :event, :method => "post", :html => {:class => "form-horizontal center"} do |f| %>
         <div class="form-group row">
-            <%= f.label :name, "Name:", class: "col-md-3 text-danger text-right h5 control-label" %>
+            <%= f.label :name, "Event Name:", class: "col-md-3 text-danger text-right h5 control-label" %>
             <div class="col-md-6">
             <%= f.text_field :name, class: "form-control",:placeholder=>"Enter event Name",
                              :required=>true %>
